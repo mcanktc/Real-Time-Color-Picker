@@ -70,6 +70,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'ColorPicker.wsgi.application'
 ASGI_APPLICATION = 'ColorPicker.asgi.application'
+ALLOWED_HOSTS = ["127.0.0.1", "localhost"]
 
 
 # Database
@@ -123,3 +124,7 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+CHANNEL_LAYERS = {
+    "default": {"BACKEND": "channels.layers.InMemoryChannelLayer"}
+}

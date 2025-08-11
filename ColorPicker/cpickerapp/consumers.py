@@ -10,7 +10,7 @@ class ColorConsumer(AsyncJsonWebsocketConsumer):
         self.room = self.scope["url_route"]["kwargs"].get("room_id", "default")
         self.group = f"color_{self.room}"
         await self.channel_layer.group_add(self.group, self.channel_name)
-        await self.accept
+        await self.accept()
 
     async def receive_json(self, content, **kwargs):
         color = content.get("color")

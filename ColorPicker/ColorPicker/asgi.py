@@ -11,6 +11,15 @@ import os
 
 from django.core.asgi import get_asgi_application
 
+from channels.auth import AuthMiddlewareStack
+from channels.routing import URLRouter, ProtocolTypeRouter
+from ColorPicker.routing import websocket_urlpatterns
+
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'ColorPicker.settings')
 
-application = get_asgi_application()
+application = ProtocolTypeRouter({
+    "http" : get_asgi_application(),
+    "websocket" : AuthMiddlewareStack(
+        URLRouter(websocket_urlpatterns)
+    )
+})
